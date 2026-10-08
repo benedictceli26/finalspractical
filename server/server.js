@@ -48,7 +48,18 @@ app.delete("/students/:id", async (req,res) => {
     res.json({message :"Student Deleted"});
 });
 
-
+app.put("/students/:id", async (req, res) => {
+    const updatedStudent = await Student.findByIdAndUpdate(
+        req.params.id,
+        {
+            name:req.body.name,
+            course:req.body.course,
+            age:req.body.age
+        },
+        {new: true}
+    );
+        res.json(updatedStudent);
+});
 
 app.listen(5000,()=>{
     console.log("Server running on port 5000");
