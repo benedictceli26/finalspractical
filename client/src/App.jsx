@@ -20,13 +20,7 @@ function App() {
     });
   },[]);
 
-  const deleteStudent = async (id) =>{
-   await axios.delete(`http://localhost:5000/students/${id}`);
-
-   const response = await axios.get("http://localhost:5000/students");
-   setStudents(response.data);
-  };
-
+  
   const addStudent = async ()=> {
     await axios.post("http://localhost:5000/students",{
         name:name,
@@ -75,8 +69,7 @@ function App() {
 
       <input type="text" placeholder='age' value = {age} onChange ={(e)=>setAge (e.target.value)} />
 
-<button onClick={editingId ? updateStudent : addStudent}>
-  {editingId ? "Update Student" : "Add Student"}
+<button >Add Student
 </button>
 
       
@@ -87,8 +80,7 @@ function App() {
           <p>Course:{student.course}</p>
           <p>Age:{student.age}</p>
           
-          <button onClick={()=> editStudent(student)}>EDIT</button>
-          <button onClick={()=> deleteStudent(student._id)}>Delete </button>
+          
           </div>
 
           
