@@ -59,9 +59,7 @@ function App() {
     const response = await axios.get ("http://localhost:5000/students");
     setStudents(response.data);
     setEditingId(null);
-    setName("");
-    setCourse("");
-    setAge("");
+    
   };
 
 
