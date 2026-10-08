@@ -6,6 +6,8 @@ import './App.css'
 import { useEffect } from 'react'
 import axios from "axios";
 
+const API_URL = "/api/students";
+
 function App() {
   const [students, setStudents] =useState([]);
   const [name, setName] = useState("");
@@ -14,28 +16,28 @@ function App() {
   const [editingId, setEditingId] = useState(null);
 
   useEffect(()=>{
-    axios.get("http://localhost:5000/students")
+    axios.get(API_URL)
     .then((response)=>{
       setStudents(response.data);
     });
   },[]);
 
   const deleteStudent = async (id) =>{
-   await axios.delete(`http://localhost:5000/students/${id}`);
+  await axios.delete(`${API_URL}/${id}`);
 
-   const response = await axios.get("http://localhost:5000/students");
+  const response = await axios.get(API_URL);
    setStudents(response.data);
   };
 
   const addStudent = async ()=> {
-    await axios.post("http://localhost:5000/students",{
+    await axios.post(API_URL,{
         name:name,
         course: course,
         age: age
         
       }
     );
-    const response = await axios.get("http://localhost:5000/students");
+    const response = await axios.get(API_URL);
     setStudents(response.data);
     setName("");
     setCourse("");
@@ -50,13 +52,13 @@ function App() {
       };
 
   const updateStudent= async () =>{
-    await axios.put(`http://localhost:5000/students/${editingId}`,{
+    await axios.put(`${API_URL}/${editingId}`,{
       name,
       course,
       age,
     });
 
-    const response = await axios.get ("http://localhost:5000/students");
+    const response = await axios.get(API_URL);
     setStudents(response.data);
     setEditingId(null);
     setName("");

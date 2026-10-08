@@ -25,13 +25,13 @@ app.get("/",(req,res)=>{
 });
 
 
-app.get("/students", async (req, res) => {  
+app.get("/api/students", async (req, res) => {  
     const students = await Student.find();
     
     res.json(students);
 });
 
-app.post("/students", async (req,res )=>{
+app.post("/api/students", async (req,res )=>{
     
     const student = new Student ({
         name:req.body.name,
@@ -43,12 +43,12 @@ app.post("/students", async (req,res )=>{
 });
 
 
-app.delete("/students/:id", async (req,res) => {
+app.delete("/api/students/:id", async (req,res) => {
     await Student.findByIdAndDelete(req.params.id);
     res.json({message :"Student Deleted"});
 });
 
-app.put("/students/:id", async (req, res) => {
+app.put("/api/students/:id", async (req, res) => {
     const updatedStudent = await Student.findByIdAndUpdate(
         req.params.id,
         {
