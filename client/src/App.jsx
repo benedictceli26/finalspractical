@@ -80,7 +80,8 @@ function App() {
           <p>Course:{student.course}</p>
           <p>Age:{student.age}</p>
           
-          
+          <button onClick={()=> editStudent(student)}>EDIT</button>
+          <button onClick={()=> deleteStudent(student._id)}>Delete </button>
           </div>
 
           
